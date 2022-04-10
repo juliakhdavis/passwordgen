@@ -5,6 +5,7 @@ function generatePassword() {
     var upperCase = document.getElementById('uppercase').checked;
     var numbers = document.getElementById('numbers').checked;
     var symbols = document.getElementById('symbols').checked;
+    var lowerCase = document.getElementById('lowercase').checked;
     let charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!#$%&*+‑/"
     let retVal = "";
     for (var i = 0, n = charset.length-1; i < length; ++i) {
@@ -25,6 +26,9 @@ function generatePassword() {
         }
         else if (symbols == false && isSymbol(character) ) {
             // console.log("the character is", character)
+            i = i-1;
+        }
+        else if (lowerCase == false && isLowerCase(character)) {
             i = i-1;
         }
         else {
@@ -76,22 +80,25 @@ function isUpperCase(ch) {
          return true;
      }
 
- }
+    }
+
+ function isLowerCase(ch) {
+    var lowercaseLettersRegex = /^[a-z]+$/;
+
+    if (ch.match(lowercaseLettersRegex)){
+        return true
+    }
+    else {
+      return false
+    }
+    
+    }
+
  
 
-//   add functions for uppercase and symbols
 
-// for (var i = 0, n = charset.length; i < length; ++i) {
-//     let val = charset.charAt(Math.floor(Math.random() * n));
-//     if((!uppercase && isUpper(val)) || (!symbols && isSymbol(val)) || (!numbers &&   
-//        isNumber(val))){
-//         i--;
-//     }
-//     else{
-//         retVal += val;
-//     }
-// }
-isSymbol("a")
-isSymbol("2")
+isUpperCase("B")
 isSymbol("@")
+isLowerCase("a")
+isCharNumber("2")
 
